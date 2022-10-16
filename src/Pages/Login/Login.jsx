@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
+
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [visibility, setvisibility] = useState(false);
@@ -73,6 +74,14 @@ export default function Login() {
       .catch((error) => console.log("error", error));
   };
 
+  const enterPressed = (e) => {
+    if (e.key === "Enter") {
+      validateFields();
+      e?.preventDefault();
+      e?.stopPropagation();
+    }
+  };
+
   return (
     <div className="login_wrapper">
       <img src={right_grad} alt="right_grad" className="right_grad" />
@@ -86,71 +95,71 @@ export default function Login() {
       <div className="login_card">
         <img src={top_grad} alt="top_gradient" className="top_gradient" />
         <img src={bottom_grad} alt="bottom_grad" className="bottom_gradient" />
-        <form onSubmit={validateFields} className="login_left_wrapper">
-          <div>
-            <p className="hello_label">Hello !</p>
-            <p className="sign_in">Sign in to your account</p>
+        <div className="login_left_wrapper">
+          <p className="hello_label">Hello !</p>
+          <p className="sign_in">Sign in to your account</p>
 
-            <div className="login_email_password">
-              <img src={emailImg} alt="" className="login_icon" />
-              <Input
-                value={email}
-                onChange={(e) => {
-                  setemail(e.target.value);
-                  isEmailEmpty && setisEmailEmpty(false);
-                  invalidCred && setinvalidCred(false);
-                }}
-                placeholder="Enter Email"
-                autoFocus
-                error={isEmailEmpty}
-                onFocus={() => {
-                  setisEmailEmpty(false);
-                  setinvalidCred(false);
-                }}
-              />
-            </div>
-
-            <div className="login_email_password">
-              <div className="lock_img">
-                <img src={lock} alt="" className="lock" />
-              </div>
-              <Input
-                type={visibility ? "text" : "password"}
-                placeholder="Enter Password"
-                password
-                value={password}
-                onChange={(e) => {
-                  setpassword(e.target.value);
-                  isPasswordEmpty && setisPasswordEmpty(false);
-                  invalidCred && setinvalidCred(false);
-                }}
-                onVisibilityClick={() => setvisibility(!visibility)}
-                error={isPasswordEmpty}
-                onFocus={() => {
-                  setisPasswordEmpty(false);
-                  setinvalidCred(false);
-                }}
-              />
-              <p className="for_pas">Forgot Password ?</p>
-            </div>
-            {invalidCred && (
-              <div className="invalidCred">
-                Invalid Username/Password. Please try again
-              </div>
-            )}
-            <button
-              className="sign_in_btn"
-              onClick={validateFields}
-              disabled={loader}
-            >
-              {loader ? (
-                <img src={loadergif} alt="loadergif" className="loadergif" />
-              ) : (
-                "SIGN IN"
-              )}
-            </button>
+          <div className="login_email_password">
+            <img src={emailImg} alt="" className="login_icon" />
+            <Input
+              value={email}
+              onChange={(e) => {
+                setemail(e.target.value);
+                isEmailEmpty && setisEmailEmpty(false);
+                invalidCred && setinvalidCred(false);
+              }}
+              placeholder="Enter Email"
+              autoFocus
+              error={isEmailEmpty}
+              onFocus={() => {
+                setisEmailEmpty(false);
+                setinvalidCred(false);
+              }}
+              onKeyPress={(e) => enterPressed(e)}
+            />
           </div>
-        </form>
+
+          <div className="login_email_password">
+            <div className="lock_img">
+              <img src={lock} alt="" className="lock" />
+            </div>
+            <Input
+              type={visibility ? "text" : "password"}
+              placeholder="Enter Password"
+              password
+              value={password}
+              onChange={(e) => {
+                setpassword(e.target.value);
+                isPasswordEmpty && setisPasswordEmpty(false);
+                invalidCred && setinvalidCred(false);
+              }}
+              onVisibilityClick={() => setvisibility(!visibility)}
+              error={isPasswordEmpty}
+              onFocus={() => {
+                setisPasswordEmpty(false);
+                setinvalidCred(false);
+              }}
+              onKeyPress={(e) => enterPressed(e)}
+            />
+            <p className="for_pas">Forgot Password ?</p>
+          </div>
+          {invalidCred && (
+            <div className="invalidCred">
+              Invalid Username/Password. Please try again
+            </div>
+          )}
+          <button
+            className="sign_in_btn"
+            onClick={validateFields}
+            disabled={loader}
+          >
+            {loader ? (
+              <img src={loadergif} alt="loadergif" className="loadergif" />
+            ) : (
+              "SIGN IN"
+            )}
+          </button>
+        </div>
 
         <div className="login_right_wrapper">
           <div className="welcome_intro">

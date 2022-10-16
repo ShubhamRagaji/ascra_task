@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// import backendDown from "../../assets/images/backendDown.png";
 import "./pageNotFound.scss";
 
 function PageNotFound() {

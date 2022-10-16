@@ -1,9 +1,9 @@
 $desk: 100/1920;
 
 .clientlist_wrapper {
-    width: 100%;
-    height: 100vh;
-    background-color: var(--fullBg);
+  width: 100%;
+  height: 100vh;
+  background-color: var(--fullBg);
 
   .clients_topbar {
     display: flex;
@@ -12,7 +12,7 @@ $desk: 100/1920;
     padding: 10 * $desk + vw 10 * $desk + vw 30 * $desk + vw 10 * $desk + vw;
 
     .clients_label {
-        color: var(--blackWhiteClr);
+      color: var(--blackWhiteClr);
 
       .client_sublabel {
         color: #a5a5a5;
@@ -104,33 +104,25 @@ $desk: 100/1920;
       transform: translateX(-50%);
       color: var(--blackWhiteClr);
       font-weight: var(--fontWgt);
-      font-size: 20*$desk+vw;
+      font-size: 20 * $desk + vw;
     }
 
     .client_info_card {
       display: flex;
       gap: 30 * $desk + vw;
       flex-wrap: wrap;
-      
+
       .main_card {
         display: flex;
         align-items: center;
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.04);
         background-color: var(--blackWhiteBg);
-        padding: 26 * $desk + vw;
+        padding: 16 * $desk + vw 26 * $desk + vw 50*$desk+vw 26 * $desk + vw;
         width: 422 * $desk + vw;
         border-radius: 14px;
         position: relative;
         overflow: hidden;
 
-        .info{
-            position: absolute;
-            right: 4%;
-            top: 6%;
-            width: 20*$desk+vw;
-            cursor: pointer;
-          }
-    
         .client_profile {
           .profile_icon {
             width: 120 * $desk + vw;
@@ -149,7 +141,7 @@ $desk: 100/1920;
           .info_subwrapper {
             display: flex;
             align-items: center;
-            margin-bottom: 20 * $desk + vw;
+            margin-bottom: 16 * $desk + vw;
             font-size: 16 * $desk + vw;
             font-weight: var(--fontWgt);
             color: var(--blackWhiteClr);
@@ -160,17 +152,41 @@ $desk: 100/1920;
               margin-right: 16 * $desk + vw;
             }
 
-            .email{
-                white-space: nowrap; 
-                width: 160px; 
-                overflow: hidden;
-                text-overflow: ellipsis; 
+            .email {
+              white-space: nowrap;
+              width: 160px;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
           }
 
           .info_subwrapper:last-child {
             margin-bottom: 0 * $desk + vw;
           }
+        }
+
+        .vw_edit_btn{
+          position: absolute;
+          left: 50%;
+          bottom: 5.4%;
+          background-color: #4136f1;
+          color: #ffffff;
+          width: 110 * $desk + vw;
+          font-size: 14*$desk+vw;
+          padding: 6*$desk+vw 0;
+          border: none;
+          border-radius: 8px;
+          transition: 0.2s;
+          cursor: pointer;
+        }
+
+        .vw_edit_btn:hover{
+          transform: scale(1.04);
+        }
+
+        
+        .vw_edit_btn:active{
+          transform: scale(0.96);
         }
       }
     }

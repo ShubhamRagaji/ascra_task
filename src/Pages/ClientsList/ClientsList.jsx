@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import search from "../../Assests/search.png";
@@ -7,7 +6,6 @@ import profileIcon from "../../Assests/profileIcon.png";
 import company from "../../Assests/company.png";
 import email from "../../Assests/email.png";
 import created from "../../Assests/created.png";
-import info from "../../Assests/info.png";
 import "./clientsLists.scss";
 import Scroller from "../../Components/ScrollBar/ScrollBar";
 import { useNavigate } from "react-router-dom";
@@ -142,14 +140,6 @@ export default function ClientsList() {
             <div className="client_info_card">
               {searchedClientsData?.map((item, index) => (
                 <div className="main_card" key={"client" + index}>
-                  <img
-                    src={info}
-                    alt=""
-                    className="info"
-                    onClick={() => {
-                      navigate("/form/" + item.name);
-                    }}
-                  />
                   <div className="client_profile">
                     <img src={profileIcon} alt="" className="profile_icon" />
                     <p className="name">{item.name.split("-")[0]} </p>
@@ -169,6 +159,14 @@ export default function ClientsList() {
                       <p>{item?.created}</p>
                     </div>
                   </div>
+                  <button
+                    onClick={() => {
+                      navigate("/form/" + item.name);
+                    }}
+                    className="vw_edit_btn"
+                  >
+                    View / Edit
+                  </button>
                 </div>
               ))}
             </div>

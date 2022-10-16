@@ -1,0 +1,123 @@
+$desk: 100/1920;
+
+.dropdown {
+  width: 328 * $desk + vw;
+  position: relative;
+
+  .dropdown_label {
+    color: var(--blackWhiteClr);
+    font-weight: var(--fontWgt);
+    font-size: 16 * $desk + vw;
+  }
+
+  .down {
+    position: absolute;
+    top: 3.8vw;
+    right: 6%;
+    transform: translateY(-50%);
+    width: 16 * $desk + vw;
+    pointer-events: none;
+  }
+}
+
+.dropdown .dropdown-btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 * $desk + vw 0 0 * $desk + vw 22 * $desk + vw;
+  background-color: var(--inpBg);
+  color: var(--blackWhiteClr);
+  border-radius: 10px;
+  font-size: 16 * $desk + vw;
+  border: solid 1px #c2c2c2;
+  margin-top: 0.2vw;
+  height: 70 * $desk + vw;
+  margin-top: 16 * $desk + vw;
+}
+
+.emptySelection {
+  border: 1px solid red !important;
+}
+
+.dropdown-content {
+  position: absolute;
+  text-align: left;
+  left: 0.4%;
+  width: 100%;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.07);
+  background-color: var(--childrenBg);
+  border-radius: 6px;
+  z-index: 10000;
+}
+
+.dropdown-content .item {
+  padding: 10px 10px 0 10px;
+  cursor: pointer;
+
+  .itm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      font-size: 14 * $desk + vw !important;
+      padding-bottom: 0.6vw;
+      color: var(--blackWhiteClr);
+      width: 100%;
+    }
+  }
+}
+
+.item:hover {
+  color: #4737f2;
+}
+
+.empty_list {
+  color: #3b3b3b;
+  font-size: 12 * $desk + vw;
+  text-align: center;
+}
+
+.dropdown-content .item .itm p:hover {
+  color: #4737f2;
+}
+
+.defaultLabel {
+  color: #c7c7c7;
+  font-size: 16 * $desk + vw;
+}
+
+.dropdownValues {
+  margin: 20 * $desk + vw 0 0 0;
+
+  .lable_settings {
+    font-size: 16 * $desk + vw;
+    color: #3b3b3b;
+    padding: 0 * $desk + vw 0 20 * $desk + vw 0 * $desk + vw;
+  }
+
+  .valuesContent {
+    margin-bottom: 20 * $desk + vw;
+
+    p {
+      text-transform: capitalize;
+      font-size: 13 * $desk + vw;
+      color: #8d8787;
+    }
+
+    .valuesInp {
+      padding: 7 * $desk + vw 10 * $desk + vw;
+      border: none;
+      background-color: white;
+      font-size: 16 * $desk + vw;
+      border-radius: 13px;
+      margin-top: 2 * $desk + vw;
+      color: #3b3b3b;
+    }
+
+    .valuesInp:focus {
+      outline: none;
+    }
+  }
+}

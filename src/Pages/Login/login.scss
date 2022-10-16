@@ -1,0 +1,211 @@
+$desk: 100/1920;
+
+.login_wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .right_grad {
+    position: absolute;
+    bottom: 0;
+    width: 200 * $desk + vw;
+    right: 0;
+  }
+
+  .left_bottom_grad {
+    position: absolute;
+    bottom: 0;
+    width: 300 * $desk + vw;
+    left: 0;
+  }
+
+  .top_left_grad {
+    position: absolute;
+    top: 0;
+    width: 360 * $desk + vw;
+    left: 0;
+  }
+
+  .login_card {
+    width: 80%;
+    height: 84vh;
+    box-shadow: -1px 4px 31px -9px rgba(0, 0, 0, 0.75);
+    border-radius: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    background-color: #ffffff;
+
+    .top_gradient {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 900 * $desk + vw;
+      border-radius: 0 36px 0 0;
+    }
+
+    .bottom_gradient {
+      position: absolute;
+      bottom: 0;
+      width: 900 * $desk + vw;
+      border-radius: 0 0 36px 0;
+      right: 0;
+    }
+
+    .login_left_wrapper {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .hello_label {
+        font-size: 30 * $desk + vw;
+        font-weight: 600;
+        font-family: cairo;
+      }
+
+      .sign_in {
+        font-size: 22 * $desk + vw;
+        padding-bottom: 20 * $desk + vw;
+        font-family: cairo;
+      }
+
+      .login_email_password {
+        position: relative;
+        width: 400 * $desk + vw;
+
+        .common_inputs {
+          padding-left: 70 * $desk + vw;
+          width: 100%;
+          color: #202020;
+        }
+
+        .visibility {
+          top: 60%;
+          width: 26 * $desk + vw;
+          transform: translateY(-50%);
+        }
+
+        .login_icon {
+          position: absolute;
+          left: 4%;
+          top: 1.6vw;
+          width: 40 * $desk + vw;
+          z-index: 1;
+        }
+
+        .lock_img {
+          width: 40 * $desk + vw;
+          height: 40 * $desk + vw;
+          border-radius: 8px;
+          background: linear-gradient(to left, #915de9, #3e33ca 1%);
+          position: absolute;
+          left: 4%;
+          top: 1.6vw;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1;
+
+          .lock {
+            width: 18 * $desk + vw;
+            filter: invert(1);
+          }
+        }
+
+        .for_pas {
+          display: flex;
+          justify-content: flex-end;
+          color: #4136f1;
+          font-size: 16 * $desk + vw;
+          padding-top: 0.4vw;
+          font-weight: 600;
+          font-family: cairo;
+        }
+      }
+
+      .invalidCred {
+        width: 400 * $desk + vw;
+        text-align: center;
+        color: red;
+        font-weight: 600;
+        font-size: 14 * $desk + vw;
+        position: absolute;
+        bottom: 32%;
+        z-index: 1;
+      }
+
+      .sign_in_btn {
+        width: 300 * $desk + vw;
+        height: 6.8vh;
+        background: linear-gradient(
+          164deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(10, 9, 121, 1) 0%,
+          rgba(95, 19, 221, 1) 0%,
+          rgba(67, 17, 189, 1) 35%,
+          rgba(17, 12, 130, 1) 100%
+        );
+        font-family: cairo;
+        color: #ffffff;
+        border: none;
+        letter-spacing: 0.1vw;
+        border-radius: 40px;
+        margin-top: 36 * $desk + vw;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 20 * $desk + vw;
+        position: relative;
+
+        .loadergif {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 8.4vw;
+          z-index: 4;
+        }
+      }
+
+      .sign_in_btn:hover {
+        transform: scale(1.04);
+      }
+
+      .sign_in_btn:active {
+        transform: scale(0.96);
+      }
+    }
+
+    .login_right_wrapper {
+      height: 100%;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      .welcome_intro {
+        width: 380 * $desk + vw;
+
+        .welcome_label {
+          font-size: 32 * $desk + vw;
+          font-weight: 600;
+          padding-bottom: 30 * $desk + vw;
+          font-family: cairo;
+        }
+
+        .intro {
+          font-size: 20 * $desk + vw;
+          line-height: 1.8vw;
+        }
+      }
+    }
+  }
+}

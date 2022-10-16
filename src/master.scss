@@ -1,0 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: poppins;
+}
+
+@font-face {
+  font-family: poppins;
+  src: url("./Fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: cairo;
+  src: url("./Fonts/Cairo-Regular.ttf");
+}
+
+.light_theme {
+    --blackWhiteBg: #fff;
+  --blackWhiteClr : #202020;
+  --fullBg :  #fff;
+  --childrenBg : #f9f9f9;
+  --fontWgt : 600;
+  --searchBrd : 2px solid #f4f7fe;
+  --deleteBg : #f4f7fe;
+  --inpBg : #f9f9f9;
+  --backClr : #2d26a9;
+}
+
+.dark_theme {
+  --blackWhiteBg: #1f2124;
+  --blackWhiteClr : #fff; 
+  --fullBg :  #171717;
+  --childrenBg : #02020a;
+  --fontWgt : 100;
+  --searchBrd : 2px solid #515151;
+  --deleteBg : rgba(255, 255, 255, 0.03);
+  --inpBg :  rgba(27, 94, 0, 0.03);
+  --backClr : #fff;
+}

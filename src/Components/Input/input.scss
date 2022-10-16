@@ -1,0 +1,54 @@
+$desk: 100/1920;
+
+.user_input {
+  position: relative;
+
+  .name {
+    color: var(--blackWhiteClr);
+    font-weight: var(--fontWgt);
+    font-size: 16 * $desk + vw;
+  }
+
+  .main_input {
+    position: relative;
+
+    .common_inputs {
+      width: 328 * $desk + vw;
+      background-color: var(--inpBg);
+      color: var(--blackWhiteClr);
+      border: solid 1px #c2c2c2;
+      padding: 20 * $desk + vw 22 * $desk + vw;
+      border-radius: 12px;
+      font-size: 18 * $desk + vw;
+      margin-top: 16 * $desk + vw;
+    }
+
+    .visibility {
+      width: 20 * $desk + vw;
+      position: absolute;
+      top: 1.8vw;
+      right: 4%;
+      cursor: pointer;
+    }
+
+    .onError {
+      border: 1px solid red;
+    }
+
+    .common_inputs:focus {
+      outline: none;
+    }
+
+    .common_inputs:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .error_msg {
+      font-size: 13 * $desk + vw;
+      color: red;
+      padding: 0.4vw 0 0 0.4vw;
+      font-weight: var(--fontWgt);
+    }
+  }
+}

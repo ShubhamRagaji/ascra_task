@@ -1,0 +1,178 @@
+$desk: 100/1920;
+
+.clientlist_wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--fullBg);
+
+  .clients_topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10 * $desk + vw 10 * $desk + vw 30 * $desk + vw 10 * $desk + vw;
+
+    .clients_label {
+        color: var(--blackWhiteClr);
+
+      .client_sublabel {
+        color: #a5a5a5;
+        font-size: 14 * $desk + vw;
+      }
+
+      .top_header {
+        font-size: 30 * $desk + vw;
+        font-family: cairo;
+        letter-spacing: 0.1vw;
+      }
+    }
+
+    .search_delete_wrapper {
+      display: flex;
+      align-items: center;
+
+      .delete_wrapper {
+        width: 52 * $desk + vw;
+        height: 52 * $desk + vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 40px;
+        background-color: var(--deleteBg);
+        border: 1px solid #4136f1;
+        margin-right: 26 * $desk + vw;
+        cursor: pointer;
+        transition: 0.2s;
+
+        .delete {
+          width: 20 * $desk + vw;
+        }
+      }
+
+      .delete_wrapper:hover {
+        transform: scale(1.04);
+      }
+
+      .delete_wrapper:active {
+        transform: scale(0.96);
+      }
+      .search_container {
+        padding-right: 26 * $desk + vw;
+        position: relative;
+
+        .search {
+          width: 22 * $desk + vw;
+          position: absolute;
+          left: 4%;
+          top: 52%;
+          transform: translateY(-50%);
+        }
+
+        .search_superadmin {
+          width: 460 * $desk + vw;
+          padding: 16 * $desk + vw 16 * $desk + vw 16 * $desk + vw 50 * $desk +
+            vw;
+          background-color: var(--blackWhiteBg);
+          border-radius: 8px;
+          border: var(--searchBrd);
+          outline: none;
+          color: var(--blackWhiteClr);
+          font-weight: var(--fontWgt);
+        }
+
+        .search_superadmin::placeholder {
+          font-size: 14 * $desk + vw;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .divider {
+    width: 100%;
+    background-color: #4136f1;
+    height: 1 * $desk + vw;
+    opacity: 0.2;
+  }
+
+  .clients_cards_wrapper {
+    padding: 40 * $desk + vw 20 * $desk + vw;
+
+    .noClients {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%);
+      color: var(--blackWhiteClr);
+      font-weight: var(--fontWgt);
+      font-size: 20*$desk+vw;
+    }
+
+    .client_info_card {
+      display: flex;
+      gap: 30 * $desk + vw;
+      flex-wrap: wrap;
+      
+      .main_card {
+        display: flex;
+        align-items: center;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.04);
+        background-color: var(--blackWhiteBg);
+        padding: 26 * $desk + vw;
+        width: 422 * $desk + vw;
+        border-radius: 14px;
+        position: relative;
+        overflow: hidden;
+
+        .info{
+            position: absolute;
+            right: 4%;
+            top: 6%;
+            width: 20*$desk+vw;
+            cursor: pointer;
+          }
+    
+        .client_profile {
+          .profile_icon {
+            width: 120 * $desk + vw;
+            margin-right: 20 * $desk + vw;
+          }
+
+          .name {
+            font-size: 15 * $desk + vw;
+            font-weight: 600;
+            padding-left: 0.6vw;
+            color: var(--blackWhiteClr);
+          }
+        }
+
+        .client_info {
+          .info_subwrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20 * $desk + vw;
+            font-size: 16 * $desk + vw;
+            font-weight: var(--fontWgt);
+            color: var(--blackWhiteClr);
+
+            .icon {
+              width: 32 * $desk + vw;
+              object-fit: contain;
+              margin-right: 16 * $desk + vw;
+            }
+
+            .email{
+                white-space: nowrap; 
+                width: 160px; 
+                overflow: hidden;
+                text-overflow: ellipsis; 
+            }
+          }
+
+          .info_subwrapper:last-child {
+            margin-bottom: 0 * $desk + vw;
+          }
+        }
+      }
+    }
+  }
+}

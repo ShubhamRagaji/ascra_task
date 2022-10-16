@@ -1,0 +1,94 @@
+$desk: 100/1920;
+
+.form_wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--fullBg);
+
+  .form {
+    padding: 10 * $desk + vw 10 * $desk + vw 30 * $desk + vw 10 * $desk + vw;
+
+    .form_label {
+      .form_sublabel {
+        color: #a5a5a5;
+        font-size: 14 * $desk + vw;
+      }
+
+      .top_header {
+        font-size: 30 * $desk + vw;
+        font-family: cairo;
+        letter-spacing: 0.1vw;
+        color: var(--blackWhiteClr);
+          font-weight: var(--fontWgt); 
+      }
+    }
+
+    .bottom_wrapper {
+      padding: 40 * $desk + vw;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.04);
+      background-color: var(--blackWhiteBg);
+      margin-top: 20 * $desk + vw;
+      border-radius: 14px;
+      display: flex;
+      height: 66vh;
+
+      .form_client_profile {
+        .form_profile_icon {
+          width: 200 * $desk + vw;
+        }
+
+        .client_name {
+          font-size: 20 * $desk + vw;
+          text-align: center;
+          padding-top: 10 * $desk + vw;
+          color: var(--blackWhiteClr);
+          font-weight: var(--fontWgt);
+        }
+      }
+
+      .form_inputs {
+        display: flex;
+        gap: 30 * $desk + vw;
+        flex-wrap: wrap;
+        margin-left: 80 * $desk + vw;
+        margin-bottom: 4vw;
+      }
+    }
+
+    .btns {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      .btn {
+        background-color: #4136f1;
+        border: none;
+        width: 200 * $desk + vw;
+        padding: 10 * $desk + vw 0;
+        border-radius: 14px;
+        color: #fff;
+
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 18 * $desk + vw;
+      }
+
+      .back_btn {
+        margin-right: 40 * $desk + vw;
+        border:  1px solid #4136f1;
+        background-color: var(--deleteBg);
+       color: var(--backClr);
+       font-weight: 600;
+      }
+
+      .btn:hover {
+        transform: scale(1.04);
+      }
+
+      .btn:active {
+        transform: scale(0.96);
+      }
+    }
+  }
+}

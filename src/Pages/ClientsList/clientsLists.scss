@@ -26,35 +26,10 @@ $desk: 100/1920;
       }
     }
 
-    .search_delete_wrapper {
+    .search_wrapper {
       display: flex;
       align-items: center;
 
-      .delete_wrapper {
-        width: 52 * $desk + vw;
-        height: 52 * $desk + vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 40px;
-        background-color: var(--deleteBg);
-        border: 1px solid #4136f1;
-        margin-right: 26 * $desk + vw;
-        cursor: pointer;
-        transition: 0.2s;
-
-        .delete {
-          width: 20 * $desk + vw;
-        }
-      }
-
-      .delete_wrapper:hover {
-        transform: scale(1.04);
-      }
-
-      .delete_wrapper:active {
-        transform: scale(0.96);
-      }
       .search_container {
         padding-right: 26 * $desk + vw;
         position: relative;
@@ -109,31 +84,32 @@ $desk: 100/1920;
 
     .client_info_card {
       display: flex;
-      gap: 30 * $desk + vw;
+      gap: 60 * $desk + vw;
       flex-wrap: wrap;
 
       .main_card {
-        display: flex;
-        align-items: center;
-        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.04);
+        box-shadow: 0px 0px 14px -7px rgba(0,0,0,0.75);
         background-color: var(--blackWhiteBg);
-        padding: 16 * $desk + vw 26 * $desk + vw 50*$desk+vw 26 * $desk + vw;
-        width: 422 * $desk + vw;
+        padding: 16 * $desk + vw;
         border-radius: 14px;
         position: relative;
         overflow: hidden;
+        margin: 0.4vw;
+        max-width: 200*$desk+vw;
 
         .client_profile {
           .profile_icon {
             width: 120 * $desk + vw;
-            margin-right: 20 * $desk + vw;
+            display: block;
+            margin: auto;
           }
 
           .name {
             font-size: 15 * $desk + vw;
-            font-weight: 600;
-            padding-left: 0.6vw;
+            font-weight: var(--fontWgt);
             color: var(--blackWhiteClr);
+            text-align: center;
+            padding-top: 0.6vw;
           }
         }
 
@@ -166,9 +142,6 @@ $desk: 100/1920;
         }
 
         .vw_edit_btn{
-          position: absolute;
-          left: 50%;
-          bottom: 5.4%;
           background-color: #4136f1;
           color: #ffffff;
           width: 110 * $desk + vw;
@@ -178,6 +151,9 @@ $desk: 100/1920;
           border-radius: 8px;
           transition: 0.2s;
           cursor: pointer;
+          display: block;
+          margin: auto;
+          margin-top: 20*$desk+vw;
         }
 
         .vw_edit_btn:hover{

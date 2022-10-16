@@ -24,6 +24,7 @@ $desk: 100/1920;
     }
 
     .bottom_wrapper {
+      position: relative;
       padding: 40 * $desk + vw;
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.04);
       background-color: var(--blackWhiteBg);
@@ -57,7 +58,7 @@ $desk: 100/1920;
 
     .btns {
       position: absolute;
-      bottom: 10%;
+      bottom: 6%;
       left: 50%;
       transform: translateX(-50%);
 
@@ -79,7 +80,7 @@ $desk: 100/1920;
         border:  1px solid #4136f1;
         background-color: var(--deleteBg);
        color: var(--backClr);
-       font-weight: 600;
+       font-weight: var(--fontWgt);
       }
 
       .btn:hover {

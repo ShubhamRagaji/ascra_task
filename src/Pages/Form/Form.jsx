@@ -31,17 +31,13 @@ export default function Form() {
   const [mobNo, setmobNo] = useState("");
   const [address, setaddress] = useState("");
 
-  const [isFullnameEmpty, setisFullnameEmpty] = useState(false);
-  const [isEmailEmpty, setisEmailEmpty] = useState(false);
-  const [isMobnoEmpty, setisMobnoEmpty] = useState(false);
-  const [isAddressEmpty, setisAddressEmpty] = useState(false);
-  const [InvalidEmail, setInvalidEmail] = useState(false);
-  const [isBankEmpty, setisBankEmpty] = useState(false);
-  const [isGenderEmpty, setisGenderEmpty] = useState(false);
-  const [isTypeEmpty, setisTypeEmpty] = useState(false);
-  const [isTerrEmpty, setisTerrEmpty] = useState(false);
-  const [isCompanyEmpty, setisCompanyEmpty] = useState(false);
-  const [details, setdetails] = useState([]);
+  const [error, seterror] = useState({
+    isFullnameEmpty: false,
+    isEmailEmpty: false,
+    isMobnoEmpty: false,
+    isAddressEmpty: false,
+    isEmailInvalid: false,
+  });
 
   useEffect(() => {
     getClientData();
@@ -121,77 +117,58 @@ export default function Form() {
   ];
 
   const validateFields = () => {
-    let FieldsEmpty = [];
+    let _error = { ...error };
 
     if (fullname === "") {
-      setisFullnameEmpty(true);
-      FieldsEmpty.push(true);
+      _error.isFullnameEmpty = true;
     }
 
     if (email === "") {
-      setisEmailEmpty(true);
-      FieldsEmpty.push(true);
+      _error.isEmailEmpty = true;
     }
     if (mobNo === "") {
-      setisMobnoEmpty(true);
-      FieldsEmpty.push(true);
+      _error.isMobnoEmpty = true;
     }
     if (address === "") {
-      setisAddressEmpty(true);
-      FieldsEmpty.push(true);
+      _error.isAddressEmpty = true;
     }
 
     if (email !== "" && !email.match(emailRegex)) {
-      setInvalidEmail(true);
-      FieldsEmpty.push(true);
+      _error.isEmailInvalid = true;
     }
 
-    if (company === "") {
-      setisCompanyEmpty(true);
-      FieldsEmpty.push(true);
-    }
+    seterror({ ..._error });
 
-    if (bank === "") {
-      setisBankEmpty(true);
-      FieldsEmpty.push(true);
-    }
-
-    if (type === "") {
-      setisTypeEmpty(true);
-      FieldsEmpty.push(true);
-    }
-
-    if (territory === "") {
-      setisTerrEmpty(true);
-      FieldsEmpty.push(true);
-    }
-
-    if (gender === "") {
-      setisGenderEmpty(true);
-      FieldsEmpty.push(true);
-    }
-
-    if (FieldsEmpty.length === 0) {
+    if (!Object.values(_error).includes(true)) {
       updateData();
     }
   };
 
+  const setEmptyFalse = (value) => {
+    let _error = { ...error };
+    _error[value] = false;
+    seterror({ ..._error });
+  };
+
   const updateData = () => {
     let myHeaders = new Headers();
-    myHeaders.append("Authorization", "token 86ecc77628c9544:bb3daa49eab307e");
+    myHeaders.append(
+      "Authorization",
+      "token " + localStorage.getItem("accessToken")
+    );
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Content-Type", "application/json");
 
     let data = JSON.stringify({
-      represents_company: company ? company : details.represents_company,
-      full_name: fullname ? fullname : details.fullname,
-      email: email ? email : details.email,
-      gender: gender ? gender : details.gender,
-      address: address ? address : details.address,
-      mobile_no: mobNo ? mobNo : details.mobile_no,
-      bank: bank ? bank : details.bank,
-      type: type ? type : details.type,
-      territory: territory ? territory : details.territory,
+      represents_company: company,
+      full_name: fullname,
+      email: email,
+      gender: gender,
+      address: address,
+      mobile_no: mobNo,
+      bank: bank,
+      type: type,
+      territory: territory,
     });
 
     let requestOptions = {
@@ -247,19 +224,20 @@ export default function Form() {
                       .trimStart()
                   )
                 }
-                onFocus={() => setisFullnameEmpty(false)}
-                error={isFullnameEmpty}
+                onFocus={() => setEmptyFalse("isFullnameEmpty")}
+                error={error.isFullnameEmpty}
               />
               <Input
                 name="Email"
                 value={email}
                 onChange={(e) => setemail(e.target.value.trim())}
                 onFocus={() => {
-                  setisEmailEmpty(false);
-                  setInvalidEmail(false);
+                  error.isEmailEmpty
+                    ? setEmptyFalse("isEmailEmpty")
+                    : setEmptyFalse("isEmailInvalid");
                 }}
-                error={isEmailEmpty || InvalidEmail}
-                errorMsg={InvalidEmail && "Invalid Email"}
+                error={error.isEmailEmpty || error.isEmailInvalid}
+                errorMsg={error.isEmailInvalid && "Invalid Email"}
               />
               <Input
                 name="Mobile No"
@@ -269,8 +247,8 @@ export default function Form() {
                     setmobNo(e.target.value.replace("  ", " "));
                   }
                 }}
-                onFocus={() => setisMobnoEmpty(false)}
-                error={isMobnoEmpty}
+                onFocus={() => setEmptyFalse("isMobnoEmpty")}
+                error={error.isMobnoEmpty}
               />
 
               <Dropdown
@@ -281,8 +259,6 @@ export default function Form() {
                 isActive={isGenderActive}
                 defaultLabel="Select"
                 name="Select Gender"
-                emptySelection={isGenderEmpty}
-                onClick={() => setisGenderEmpty(false)}
               >
                 {["Male", "Female"]?.map((item, index) => (
                   <div
@@ -304,8 +280,8 @@ export default function Form() {
                 onChange={(e) =>
                   setaddress(e.target.value.replace("  ", " ").trimStart())
                 }
-                onFocus={() => setisAddressEmpty(false)}
-                error={isAddressEmpty}
+                onFocus={() => setEmptyFalse("isAddressEmpty")}
+                error={error.isAddressEmpty}
               />
 
               <Dropdown
@@ -316,8 +292,6 @@ export default function Form() {
                 isActive={isTerrActive}
                 defaultLabel="Select"
                 name="Select Territory"
-                emptySelection={isTerrEmpty}
-                onClick={() => setisTerrEmpty(false)}
               >
                 {["East", "West", "North", "South"]?.map((item, index) => (
                   <div
@@ -341,8 +315,6 @@ export default function Form() {
                 isActive={isCompanyActive}
                 defaultLabel="Select"
                 name="Select Company"
-                emptySelection={isCompanyEmpty}
-                onClick={() => setisCompanyEmpty(false)}
               >
                 {companys?.map((item, index) => (
                   <div
@@ -366,8 +338,6 @@ export default function Form() {
                 isActive={istypeActive}
                 defaultLabel="Select"
                 name="Select Type"
-                emptySelection={isTypeEmpty}
-                onClick={() => setisTypeEmpty(false)}
               >
                 {["Company", "Individual"]?.map((item, index) => (
                   <div
@@ -391,8 +361,6 @@ export default function Form() {
                 isActive={isActive}
                 defaultLabel="Select"
                 name="Select Bank"
-                emptySelection={isBankEmpty}
-                onClick={() => setisBankEmpty(false)}
               >
                 {bankdata?.map((item, index) => (
                   <div
@@ -408,8 +376,8 @@ export default function Form() {
                 ))}{" "}
               </Dropdown>
             </div>
-          </div>
-          <div className="btns">
+
+            <div className="btns">
             <button
               className="btn back_btn"
               onClick={() => navigate("/clientlist")}
@@ -420,6 +388,8 @@ export default function Form() {
               Submit
             </button>
           </div>
+          </div>
+          
         </div>
       </Navbar>
     </div>

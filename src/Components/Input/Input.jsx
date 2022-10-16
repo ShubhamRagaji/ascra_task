@@ -47,7 +47,7 @@ export default function Input({
           disabled={disabled}
           onKeyPress={onKeyPress}
         />
-        {error && <p className="error_msg fadeIn">{errorMsg}</p>}
+        {(error && errorMsg) && <p className="error_msg fadeIn">{errorMsg}</p>}
       </div>
     </div>
   );

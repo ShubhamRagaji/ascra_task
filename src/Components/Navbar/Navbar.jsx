@@ -10,45 +10,37 @@ import { useNavigate } from "react-router-dom";
 export default function Navbar({ children }) {
   const navigate =  useNavigate()
   const [Theme, setTheme] = useState("");
+  const html = document.querySelector("html");
 
   useEffect(() => {
-    const html = document.querySelector("html");
-
     if (!localStorage.getItem("theme")) {
       localStorage.setItem("theme", "Light");
       setTheme("Light");
       html.classList.add("light_theme");
       html.classList.remove("dark_theme");
-      // getTheme && getTheme("Light");
     } else {
       setTheme(localStorage.getItem("theme"));
       if (localStorage.getItem("theme") === "Light") {
         html.classList.add("light_theme");
         html.classList.remove("dark_theme");
-        // getTheme && getTheme("Light");
       } else {
         html.classList.add("dark_theme");
         html.classList.remove("light_theme");
-        // getTheme && getTheme("Dark");
       }
     }
   }, []);
 
   const manageTheme = () => {
-    const html = document.querySelector("html");
-
     if (localStorage.getItem("theme") === "Light") {
       setTheme("Dark");
       localStorage.setItem("theme", "Dark");
       html.classList.add("dark_theme");
       html.classList.remove("light_theme");
-      // getTheme && getTheme("Dark");
     } else {
       setTheme("Light");
       localStorage.setItem("theme", "Light");
       html.classList.add("light_theme");
       html.classList.remove("dark_theme");
-      // getTheme && getTheme("Light");
     }
   };
 

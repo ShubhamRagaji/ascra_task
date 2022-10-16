@@ -30,19 +30,16 @@ export default function Login() {
   }, []);
 
   const validateFields = () => {
-    let fieldsEmpty = [];
 
     if (email === "") {
       setisEmailEmpty(true);
-      fieldsEmpty.push(true);
     }
 
     if (password === "") {
       setisPasswordEmpty(true);
-      fieldsEmpty.push(true);
     }
 
-    if (fieldsEmpty.length === 0) {
+    if (email !== "" && password !== "") {
       postData();
     }
   };

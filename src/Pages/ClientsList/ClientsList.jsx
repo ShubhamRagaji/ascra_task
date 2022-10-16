@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import search from "../../Assests/search.png";
-import deleteCard from "../../Assests/delete.png";
 import profileIcon from "../../Assests/profileIcon.png";
-import company from "../../Assests/company.png";
-import email from "../../Assests/email.png";
-import created from "../../Assests/created.png";
 import "./clientsLists.scss";
 import Scroller from "../../Components/ScrollBar/ScrollBar";
 import { useNavigate } from "react-router-dom";
@@ -54,33 +50,8 @@ export default function ClientsList() {
       },
     ];
 
-    let _data = [...clientsData];
-    let data = [
-      {
-        company: "Wayne Enterprises",
-        email: "melissa@gardenmanagement.com",
-        created: "20 July 2022",
-      },
-      {
-        company: "Wayne Enterprises",
-        email: "wayne@wayneent.com",
-        created: "20 July 2022",
-      },
-      {
-        company: "Showbiz Pizza Place",
-        email: "data@gmail.com",
-        created: "20 July 2022",
-      },
-    ];
-
-    _data.map((item, index) => {
-      item["company"] = data[index].company;
-      item["email"] = data[index].email;
-      item["created"] = data[index].created;
-    });
-
-    setsearchedClientsData(_data);
-    setclientsData(_data);
+    setsearchedClientsData(clientsData);
+    setclientsData(clientsData);
   };
 
   return (
@@ -92,10 +63,7 @@ export default function ClientsList() {
             <p className="client_sublabel">It's all about customers.</p>
           </div>
 
-          <div className="search_delete_wrapper">
-            <div className="delete_wrapper">
-              <img src={deleteCard} alt="" className="delete" />
-            </div>
+          <div className="search_wrapper">
             <div className="search_container">
               <img src={search} alt="" className="search" />
               <input
@@ -145,20 +113,6 @@ export default function ClientsList() {
                     <p className="name">{item.name.split("-")[0]} </p>
                   </div>
 
-                  <div className="client_info">
-                    <div className="info_subwrapper">
-                      <img src={company} alt="" className="icon" />
-                      <p>{item.company}</p>
-                    </div>
-                    <div className="info_subwrapper">
-                      <img src={email} alt="" className="icon" />
-                      <p className="email">{item.email}</p>
-                    </div>
-                    <div className="info_subwrapper">
-                      <img src={created} alt="" className="icon" />
-                      <p>{item?.created}</p>
-                    </div>
-                  </div>
                   <button
                     onClick={() => {
                       navigate("/form/" + item.name);

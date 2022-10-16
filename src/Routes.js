@@ -21,7 +21,6 @@ function Navigation() {
     }
   }, [navigate]);
 
-  console.log("first");
   const [role, setrole] = useState(null);
 
   const [Links, setLinks] = useState({

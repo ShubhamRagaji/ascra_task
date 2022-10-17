@@ -365,13 +365,13 @@ export default function Form() {
       </Navbar>
 
       {successPopup && (
-        <div className="Popup">
+        <div className="popup">
           <div className="overlay" />
           <div style={{ position: "relative" }}>
-            <div className="videoPopupContent bounceInDown">
+            <div className="popupContent">
               <img src={blueInfo} alt="info" className="blueInfo" />
               <p className="ki">Kind Information</p>
-              <p className="Label">Details updated successfully</p>
+              <p className="label">Details updated successfully</p>
               <button className="okBtn" onClick={() => setsuccessPopup(false)}>
                Okay
               </button>

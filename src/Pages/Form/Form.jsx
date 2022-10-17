@@ -154,7 +154,7 @@ export default function Form() {
     let myHeaders = new Headers();
     myHeaders.append(
       "Authorization",
-      "token " + localStorage.getItem("accessToken")
+      localStorage.getItem("accessToken")
     );
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Content-Type", "application/json");
@@ -176,10 +176,11 @@ export default function Form() {
       headers: myHeaders,
       body: data,
       redirect: "follow",
+      // mode: "no-cors",
     };
 
     fetch(
-      `http://work.8848digitalerp.com/api/resource/Client/${clientName.name}`,
+      `/api/resource/Client/${clientName.name}`,
       requestOptions
     )
       .then((response) => response.text())

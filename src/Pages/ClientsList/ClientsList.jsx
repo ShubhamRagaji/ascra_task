@@ -5,6 +5,7 @@ import profileIcon from "../../Assests/profileIcon.png";
 import "./clientsLists.scss";
 import Scroller from "../../Components/ScrollBar/ScrollBar";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function ClientsList() {
   const navigate = useNavigate();
@@ -19,10 +20,7 @@ export default function ClientsList() {
 
   const getClientData = () => {
     var myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      "token " + localStorage.getItem("accessToken")
-    );
+    myHeaders.append("Authorization", localStorage.getItem("accessToken"));
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Content-Type", "application/json");
 
@@ -30,13 +28,22 @@ export default function ClientsList() {
       method: "GET",
       headers: myHeaders,
       redirect: "follow",
-      mode: "no-cors",
+      // mode: "no-cors",
     };
 
-    fetch("http://work.8848digitalerp.com/api/resource/Client/", requestOptions)
+    fetch("/api/resource/Client/", requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
+
+    // axios
+    //   .get("/api/resource/Client/", {
+    //     Authorization: localStorage.getItem("accessToken"),
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   })
+    //   .then((data) => console.log("data", data))
+    //   .catch((err) => console.log("err", err));
 
     let clientsData = [
       {

@@ -10,6 +10,7 @@ import top_left_grad from "../../Assests/top_left_grad.png";
 import loadergif from "../../Assests/loader.gif";
 import "./login.scss";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -30,7 +31,6 @@ export default function Login() {
   }, []);
 
   const validateFields = () => {
-
     if (email === "") {
       setisEmailEmpty(true);
     }
@@ -45,30 +45,35 @@ export default function Login() {
   };
 
   const postData = () => {
-    if (email !== "test@gmail.com" || password !== "Ascra@123") {
-      setinvalidCred(true);
-      return;
-    }
-
     setloader(true);
     var requestOptions = {
       method: "POST",
       redirect: "follow",
-      mode: "no-cors",
     };
 
     fetch(
-      `http://work.8848digitalerp.com/api/method/work.api.login.get_access_api_token?usr=${email}&pwd=${password}`,
+      `/api/method/work.api.login.get_access_api_token?usr=${email}&pwd=${password}`,
       requestOptions
     )
-      .then((result) => {
-        console.log("result", result);
-        setloader(false);
-        localStorage.setItem("role", "LoggedIn");
-        localStorage.setItem("accessToken", "86ecc77628c9544:bb3daa49eab307e");
-        navigate("/clientlist");
+      .then((response) => {
+        return response.text();
       })
-      .catch((error) => console.log("error", error));
+      .then((result) => {
+        setloader(false);
+
+        let data = JSON.parse(result);
+        if (data.message.access_token) {
+          localStorage.setItem("role", "LoggedIn");
+          localStorage.setItem("accessToken", data.message.access_token);
+          navigate("/clientlist");
+        } else {
+          setinvalidCred(true);
+        }
+      })
+      .catch((error) => {
+        setloader(false);
+        setinvalidCred(true);
+      });
   };
 
   const enterPressed = (e) => {

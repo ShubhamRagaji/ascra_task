@@ -28,37 +28,16 @@ export default function ClientsList() {
       method: "GET",
       headers: myHeaders,
       redirect: "follow",
-      // mode: "no-cors",
     };
 
-    fetch("/api/resource/Client/", requestOptions)
+    fetch("/api/resource/Client", requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((result) => {
+        let data = JSON.parse(result);
+        setclientsData(data.data);
+        setsearchedClientsData(data.data);
+      })
       .catch((error) => console.log("error", error));
-
-    // axios
-    //   .get("/api/resource/Client/", {
-    //     Authorization: localStorage.getItem("accessToken"),
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   })
-    //   .then((data) => console.log("data", data))
-    //   .catch((err) => console.log("err", err));
-
-    let clientsData = [
-      {
-        name: "Melissa Dane-03",
-      },
-      {
-        name: "Bruce Wayne-02",
-      },
-      {
-        name: "Preston Clyde-01",
-      },
-    ];
-
-    setsearchedClientsData(clientsData);
-    setclientsData(clientsData);
   };
 
   return (

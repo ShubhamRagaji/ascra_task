@@ -51,6 +51,7 @@ $desk: 100/1920;
           border: var(--searchBrd);
           outline: none;
           color: var(--blackWhiteClr);
+          font-size: 18*$desk+vw;
           font-weight: var(--fontWgt);
         }
 

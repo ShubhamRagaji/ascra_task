@@ -27,13 +27,13 @@ function Navigation() {
     LoggedIn: [
       <Route path="/clientlist" element={<ClientsList />} strict exact />,
       <Route path="/form/:name" element={<Form />} strict exact />,
+      <Route path="*" element={<PageNotFound />} strict exact />,
     ],
   });
 
   return (
     <Routes>
       <Route path="/" element={<Login />} strict exact />,
-      <Route path="*" element={<PageNotFound />} strict exact />,
       {role && Links[role].map((item) => item)}
     </Routes>
   );

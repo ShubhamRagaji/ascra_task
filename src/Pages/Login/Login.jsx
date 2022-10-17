@@ -121,7 +121,7 @@ export default function Login() {
             />
           </div>
 
-          <div className="login_email_password">
+          <div className="login_email_password" style={{marginBottom : "4vw"}}>
             <div className="lock_img">
               <img src={lock} alt="" className="lock" />
             </div>
@@ -143,7 +143,6 @@ export default function Login() {
               }}
               onKeyPress={(e) => enterPressed(e)}
             />
-            <p className="for_pas">Forgot Password ?</p>
           </div>
           {invalidCred && (
             <div className="invalidCred">

@@ -5,6 +5,7 @@ import profileIcon from "../../Assests/profileIcon.png";
 import Input from "../../Components/Input/Input";
 import Dropdown from "../../Components/Dropdown/Dropdown";
 import { useNavigate, useParams } from "react-router-dom";
+import blueInfo from "../../Assests/blueInfo.png"
 
 let specialCharacters = /[!@#$%^&*()+_~`\-=\[\]{};':"\\|,.<>\/?]+/;
 let emailRegex =
@@ -31,6 +32,8 @@ export default function Form() {
   const [mobNo, setmobNo] = useState("");
   const [address, setaddress] = useState("");
 
+  const [successPopup, setsuccessPopup] = useState(false);
+
   const [error, seterror] = useState({
     isFullnameEmpty: false,
     isEmailEmpty: false,
@@ -48,56 +51,30 @@ export default function Form() {
 
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append(
-      "Authorization",
-      "token " + localStorage.getItem("accessToken")
-    );
+    myHeaders.append("Authorization", localStorage.getItem("accessToken"));
 
     let requestOptions = {
       method: "GET",
       headers: myHeaders,
       redirect: "follow",
-      mode: "no-cors",
     };
 
-    fetch(
-      `http://work.8848digitalerp.com/api/resource/Client/${clientName.name}`,
-      requestOptions
-    )
-      .then((result) => console.log("result", result))
-      .catch((error) => console.log("error", error));
+    fetch(`/api/resource/Client/${clientName.name}`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        let data = JSON.parse(result);
 
-    if (clientName.name === "Melissa Dane-03") {
-      setfullname("Melissa Dane");
-      setemail("melissa@gardenmanagement.com");
-      setgender("Male");
-      setaddress("PLAAAAA, Garden Management");
-      setmobNo(123345345);
-      setbank("Wells Fargo");
-      settype("Company");
-      setterritory("East");
-      setcompany("Wayne Enterprises");
-    } else if (clientName.name === "Bruce Wayne-02") {
-      setfullname("Bruce");
-      setemail("wayne@wayneent.com");
-      setgender("Male");
-      setaddress("Wayne Manor,\nMount Ave Drive,\nGotham City");
-      setmobNo(346125987);
-      setbank("Bank of America");
-      settype("Individual");
-      setterritory("West");
-      setcompany("Wayne Enterprises");
-    } else if (clientName.name === "Preston Clyde-01") {
-      setfullname("Preston Clyde");
-      setemail("data@gmail.com");
-      setgender("Male");
-      setaddress("East Avenue, Block 15\nShowbiz Pizza Place.\nNew York");
-      setmobNo(987654321);
-      setbank("HDFC");
-      settype("Individual");
-      setterritory("East");
-      setcompany("Showbiz Pizza Place");
-    }
+        setfullname(data.data.full_name);
+        setemail(data.data.email);
+        setgender(data.data.gender);
+        setaddress(data.data.address);
+        setmobNo(data.data.mobile_no);
+        setbank(data.data.bank);
+        settype(data.data.type);
+        setterritory(data.data.territory);
+        setcompany(data.data.represents_company);
+      })
+      .catch((error) => console.log("error", error));
   };
 
   let bankdata = [
@@ -152,10 +129,7 @@ export default function Form() {
 
   const updateData = () => {
     let myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      localStorage.getItem("accessToken")
-    );
+    myHeaders.append("Authorization", localStorage.getItem("accessToken"));
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Content-Type", "application/json");
 
@@ -165,7 +139,7 @@ export default function Form() {
       email: email,
       gender: gender,
       address: address,
-      mobile_no: mobNo,
+      mobile_no: Number(mobNo),
       bank: bank,
       type: type,
       territory: territory,
@@ -176,15 +150,11 @@ export default function Form() {
       headers: myHeaders,
       body: data,
       redirect: "follow",
-      // mode: "no-cors",
     };
 
-    fetch(
-      `/api/resource/Client/${clientName.name}`,
-      requestOptions
-    )
+    fetch(`/api/resource/Client/${clientName.name}`, requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((result) => setsuccessPopup(true))
       .catch((error) => console.log("error", error));
   };
 
@@ -243,6 +213,7 @@ export default function Form() {
               <Input
                 name="Mobile No"
                 value={mobNo}
+                maxLength={9}
                 onChange={(e) => {
                   if (!isNaN(e.target.value)) {
                     setmobNo(e.target.value.replace("  ", " "));
@@ -379,20 +350,35 @@ export default function Form() {
             </div>
 
             <div className="btns">
-            <button
-              className="btn back_btn"
-              onClick={() => navigate("/clientlist")}
-            >
-              Back
-            </button>
-            <button className="btn" onClick={validateFields}>
-              Submit
-            </button>
+              <button
+                className="btn back_btn"
+                onClick={() => navigate("/clientlist")}
+              >
+                Back
+              </button>
+              <button className="btn" onClick={validateFields}>
+                Submit
+              </button>
+            </div>
           </div>
-          </div>
-          
         </div>
       </Navbar>
+
+      {successPopup && (
+        <div className="Popup">
+          <div className="overlay" />
+          <div style={{ position: "relative" }}>
+            <div className="videoPopupContent bounceInDown">
+              <img src={blueInfo} alt="info" className="blueInfo" />
+              <p className="ki">Kind Information</p>
+              <p className="Label">Details updated successfully</p>
+              <button className="okBtn" onClick={() => setsuccessPopup(false)}>
+               Okay
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

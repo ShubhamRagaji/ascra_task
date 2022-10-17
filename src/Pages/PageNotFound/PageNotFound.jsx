@@ -71,10 +71,8 @@ function PageNotFound() {
         <div className="buttons-con">
           <div className="action-link-wrap">
             <button
-              onClick={() => 
-                navigate("/clientlist")
-             }
-             className="notFoundBtn"
+              onClick={() => navigate("/clientlist")}
+              className="notFoundBtn"
             >
               Go to Home Page
             </button>

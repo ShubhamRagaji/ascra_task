@@ -1,9 +1,11 @@
+@use "sass:math";
+
 $green: #008744;
 $blue: #0057e7;
 $red: #d62d20;
 $yellow: #ffa700;
 $white: #eee;
-$desk: 100/1920;
+$desk: math.div(100, 1920);
 
 .ServerDown {
   display: flex;

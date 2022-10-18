@@ -10,7 +10,6 @@ import top_left_grad from "../../Assests/top_left_grad.png";
 import loadergif from "../../Assests/loader.gif";
 import "./login.scss";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 export default function Login() {
   const navigate = useNavigate();

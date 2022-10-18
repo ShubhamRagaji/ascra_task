@@ -1,4 +1,5 @@
-$desk: 100/1920;
+@use "sass:math";
+$desk: math.div(100, 1920);
 
 .navbar_wrapper {
   width: 98%;

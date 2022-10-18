@@ -5,14 +5,14 @@ import profileIcon from "../../Assests/profileIcon.png";
 import "./clientsLists.scss";
 import Scroller from "../../Components/ScrollBar/ScrollBar";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import loaderGif from "../../Assests/loader.gif";
 export default function ClientsList() {
   const navigate = useNavigate();
 
   const [clientsData, setclientsData] = useState([]);
   const [searchedClientsData, setsearchedClientsData] = useState([]);
   const [noDataFound, setnoDataFound] = useState(false);
+  const [loader, setloader] = useState(true);
 
   useEffect(() => {
     getClientData();
@@ -33,11 +33,15 @@ export default function ClientsList() {
     fetch("/api/resource/Client", requestOptions)
       .then((response) => response.text())
       .then((result) => {
+        setloader(false);
         let data = JSON.parse(result);
         setclientsData(data.data);
         setsearchedClientsData(data.data);
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => {
+        console.log("error", error);
+        setloader(false);
+      });
   };
 
   return (
@@ -82,6 +86,7 @@ export default function ClientsList() {
 
         <div className="divider" />
         <div className="clients_cards_wrapper">
+          {loader && <img src={loaderGif} alt="" className="loaderGif" />}
           {noDataFound && <p className="noClients">No Clients Found</p>}
           <Scroller
             autoHeightMax="62vh"

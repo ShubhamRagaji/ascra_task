@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import "./master.scss";
 import ClientsList from "./Pages/ClientsList/ClientsList";
@@ -23,13 +23,13 @@ function Navigation() {
 
   const [role, setrole] = useState(null);
 
-  const [Links, setLinks] = useState({
+  const Links = {
     LoggedIn: [
       <Route path="/clientlist" element={<ClientsList />} strict exact />,
       <Route path="/form/:name" element={<Form />} strict exact />,
       <Route path="*" element={<PageNotFound />} strict exact />,
     ],
-  });
+  };
 
   return (
     <Routes>
